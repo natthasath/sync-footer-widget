@@ -1,0 +1,71 @@
+<?php
+/*
+Plugin Name: Sync Footer Widget
+Description: Sync footer content from a GitHub Page and display it in a widget.
+Version: 1.0
+Author: Natthasath Saksupanara
+Requires at least: 5.6
+Requires PHP: 7.4
+Tested up to: 6.7
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: sync-footer-widget
+Domain Path: /languages
+*/
+
+// Register widget
+class SFW_SyncFooterWidget extends WP_Widget {
+    public function __construct() {
+        parent::__construct(
+            'sfw_sync_footer_widget',
+            __('Sync Footer Widget', 'sync-footer-widget'),
+            array('description' => __('Displays footer synced from GitHub Pages', 'sync-footer-widget'))
+        );
+    }
+
+    public function widget($args, $instance) {
+        $github_url = !empty($instance['github_url']) ? esc_url($instance['github_url']) : '';
+
+        echo $args['before_widget']; // Safe to echo as it's handled by WordPress
+        if ($github_url) {
+            $response = wp_remote_get($github_url, array('timeout' => 10));
+            if (is_wp_error($response)) {
+                echo esc_html__('Failed to retrieve content from GitHub Pages.', 'sync-footer-widget');
+            } else {
+                $body = wp_remote_retrieve_body($response);
+                echo wp_kses_post($body); // Escape HTML for safe output
+            }
+        }
+        echo $args['after_widget']; // Safe to echo as it's handled by WordPress
+    }
+
+    public function form($instance) {
+        $github_url = !empty($instance['github_url']) ? esc_url($instance['github_url']) : '';
+        ?>
+        <p>
+            <label for="<?php echo esc_attr($this->get_field_id('github_url')); ?>">
+                <?php esc_html_e('GitHub Pages URL:', 'sync-footer-widget'); ?>
+            </label>
+            <input 
+                class="widefat" 
+                id="<?php echo esc_attr($this->get_field_id('github_url')); ?>" 
+                name="<?php echo esc_attr($this->get_field_name('github_url')); ?>" 
+                type="text" 
+                value="<?php echo esc_attr($github_url); ?>" 
+            />
+        </p>
+        <?php
+    }
+
+    public function update($new_instance, $old_instance) {
+        $instance = array();
+        $instance['github_url'] = !empty($new_instance['github_url']) ? esc_url_raw($new_instance['github_url']) : '';
+        return $instance;
+    }
+}
+
+// Register widget
+function sfw_register_sync_footer_widget() {
+    register_widget('SFW_SyncFooterWidget');
+}
+add_action('widgets_init', 'sfw_register_sync_footer_widget');

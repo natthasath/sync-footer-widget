@@ -1,0 +1,58 @@
+=== Sync Footer Widget ===
+Contributors: natthasath
+Tags: footer, github, sync, widget
+Tested up to: 6.7
+Stable tag: 1.1
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+This plugin allows you to sync and display footer content from a GitHub Page URL in a widget area on your WordPress site.
+
+== Description ==
+Sync Footer Widget fetches the footer content directly from a specified GitHub Page and displays it in a widget. This is useful for websites that want to share the same footer content across multiple WordPress installations, making it easier to manage and update.
+
+**Features:**
+- Fetches HTML footer content from GitHub Pages.
+- Displays content in a customizable widget area.
+- Ideal for websites sharing the same footer content.
+
+== Installation ==
+1. Upload the plugin's ZIP file through the WordPress admin panel by navigating to **Plugins > Add New**.
+2. Once installed, activate the plugin through the **Plugins** menu.
+3. Go to **Appearance > Widgets** to add the "Sync Footer Widget" to your footer area.
+4. Provide a valid GitHub Page URL in the widget settings to sync the footer content.
+
+== Frequently Asked Questions ==
+= Can I use this plugin with any GitHub repository? =
+No, this plugin only works with publicly accessible GitHub Pages containing HTML content. You need to provide a link to a page that is publicly viewable.
+
+= Does the plugin support dynamic content? =
+Yes, any HTML, CSS, or JavaScript embedded within the GitHub Page will be rendered on your WordPress site.
+
+= Can I use multiple widgets on different pages? =
+Yes, you can add multiple instances of the widget to different areas of your site.
+
+== Screenshots ==
+1. The widget settings screen where you input the GitHub Page URL.
+2. Example of footer content displayed on the front-end.
+
+== Changelog ==
+= 1.1 =
+* Removed `wp_kses` function for HTML content handling.
+* Improved security measures for dynamic content rendering.
+
+= 1.0 =
+* Initial release with GitHub Page syncing feature.
+
+== Upgrade Notice ==
+= 1.0 =
+No upgrades are available for this version.
+
+== Screenshots ==
+1. **Preview Footer on GitHub Page**  
+   Screenshot showing the footer template preview hosted on GitHub Page.  
+   ![Preview Footer on GitHub Page](https://plugins.svn.wordpress.org/sync-footer-widget/assets/screenshot-1.png)
+
+2. **Plugin Settings Page**  
+   Screenshot showing the Sync Footer Widget plugin settings page with GitHub Page URL input field.  
+   ![Settings Page](https://plugins.svn.wordpress.org/sync-footer-widget/assets/screenshot-2.png)
