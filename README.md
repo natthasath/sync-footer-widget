@@ -8,7 +8,7 @@ Sync Footer Widget is a WordPress plugin that fetches footer content directly fr
 ![downloads](https://img.shields.io/wordpress/plugin/dt/sync-footer-widget.svg)
 ![last commit](https://img.shields.io/github/last-commit/natthasath/sync-footer-widget)
 
-![Sync Footer Widget — One footer. Multiple WordPress sites.](assets/banner.png)
+![Sync Footer Widget — One footer. Multiple WordPress sites.](images/overview.png)
 
 ### ✨ Features
 
